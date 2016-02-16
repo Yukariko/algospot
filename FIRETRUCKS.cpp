@@ -12,15 +12,18 @@ int b[1001];
 
 vector<vector<pair<int, int>>> adj;
 
-int dijkstra(int S)
+int dijkstra()
 {
 	vector<int> d(V+1, INF);
 
-	d[S] = 0;
-
 	priority_queue<pair<int, int>> pq;
-	pq.push({0, S});
 
+	for(int i=0; i < M; i++)
+	{
+		d[b[i]] = 0;
+		pq.push({0, b[i]});
+	}
+	
 	while(!pq.empty())
 	{
 		int w = -pq.top().first;
@@ -44,8 +47,8 @@ int dijkstra(int S)
 	}
 
 	int ans = INF;
-	for(int i=0; i < M; i++)
-		ans = min(ans, d[b[i]]);
+	for(int i=0; i < N; i++)
+		ans = min(ans, d[a[i]]);
 
 	return ans;
 }
@@ -77,11 +80,7 @@ int main()
 		for(int i=0; i < M; i++)
 			scanf("%d", &b[i]);
 
-		int ans = 0;
-		for(int i=0; i < N; i++)
-			ans += dijkstra(a[i]);
-
-		printf("%d\n", ans);
+		printf("%d\n", dijkstra());
 	}
 	return 0;
 }
