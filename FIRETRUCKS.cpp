@@ -46,9 +46,9 @@ int dijkstra()
 		}
 	}
 
-	int ans = INF;
+	int ans = 0;
 	for(int i=0; i < N; i++)
-		ans = min(ans, d[a[i]]);
+		ans += d[a[i]];
 
 	return ans;
 }
